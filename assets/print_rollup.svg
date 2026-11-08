@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="printBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B131B" />
+      <stop offset="70%" stop-color="#162E44" />
+      <stop offset="100%" stop-color="#080E14" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F5A623" />
+      <stop offset="100%" stop-color="#D48806" />
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="500" fill="url(#printBg)" />
+
+  <!-- Rollup Stand Mockup -->
+  <!-- Base Stand -->
+  <rect x="300" y="380" width="200" height="15" rx="5" fill="#94A3B8" />
+  <rect x="330" y="395" width="140" height="10" rx="3" fill="#64748B" />
+
+  <!-- Banner Canvas (Rollup) -->
+  <g transform="translate(325, 40)">
+    <rect width="150" height="340" fill="#0B131B" stroke="#48CAE4" stroke-width="2" rx="4" />
+    
+    <!-- Top Brand Area -->
+    <rect x="15" y="15" width="120" height="35" rx="4" fill="#162E44" />
+    <circle cx="35" cy="32" r="10" fill="#F5A623" />
+    <rect x="55" y="27" width="60" height="10" rx="3" fill="#FFFFFF" />
+
+    <!-- Graphic shapes inside banner -->
+    <path d="M0 120 Q75 80 150 140 L150 200 L0 180 Z" fill="rgba(72, 202, 228, 0.25)" />
+    <circle cx="75" cy="140" r="30" fill="rgba(245, 166, 35, 0.3)" />
+
+    <!-- Typography mockup lines -->
+    <text x="75" y="230" fill="#FFFFFF" font-family="'IBM Plex Sans Arabic', sans-serif" font-size="13" font-weight="bold" text-anchor="middle">المؤتمر السنوي للتقنية</text>
+    <rect x="25" y="245" width="100" height="6" rx="2" fill="#94A3B8" />
+    <rect x="35" y="257" width="80" height="6" rx="2" fill="#94A3B8" />
+
+    <!-- QR Code Mockup -->
+    <rect x="55" y="280" width="40" height="40" fill="#FFFFFF" rx="4" />
+    <rect x="62" y="287" width="10" height="10" fill="#0B131B" />
+    <rect x="78" y="287" width="10" height="10" fill="#0B131B" />
+    <rect x="62" y="303" width="10" height="10" fill="#0B131B" />
+    <rect x="78" y="303" width="10" height="10" fill="#48CAE4" />
+  </g>
+
+  <!-- Left / Right Info Panels -->
+  <g transform="translate(60, 160)">
+    <rect width="210" height="130" rx="12" fill="#162E44" stroke="rgba(72, 202, 228, 0.3)" stroke-width="1" />
+    <text x="105" y="40" fill="#F5A623" font-family="'IBM Plex Sans Arabic', sans-serif" font-size="14" font-weight="bold" text-anchor="middle">معايير طباعة دقيقة</text>
+    <text x="105" y="70" fill="#FFFFFF" font-family="'IBM Plex Sans Arabic', sans-serif" font-size="13" text-anchor="middle">نظام ألوان CMYK 300 DPI</text>
+    <text x="105" y="95" fill="#94A3B8" font-family="'IBM Plex Sans Arabic', sans-serif" font-size="12" text-anchor="middle">جاهز فورا للمطابع الكبرى</text>
+  </g>
+
+  <g transform="translate(530, 160)">
+    <rect width="210" height="130" rx="12" fill="#162E44" stroke="rgba(245, 166, 35, 0.3)" stroke-width="1" />
+    <text x="105" y="40" fill="#48CAE4" font-family="'IBM Plex Sans Arabic', sans-serif" font-size="14" font-weight="bold" text-anchor="middle">مقاسات مؤتمرات ومعارض</text>
+    <text x="105" y="70" fill="#FFFFFF" font-family="'IBM Plex Sans Arabic', sans-serif" font-size="13" text-anchor="middle">Roll-Up Stand 85x200cm</text>
+    <text x="105" y="95" fill="#94A3B8" font-family="'IBM Plex Sans Arabic', sans-serif" font-size="12" text-anchor="middle">دقة متناهية بدون تشويش</text>
+  </g>
+
+  <!-- Title Bottom -->
+  <text x="400" y="445" fill="#FFFFFF" font-family="'IBM Plex Sans Arabic', sans-serif" font-size="22" font-weight="700" text-anchor="middle">تصميم رول آب للمعارض والفعاليات</text>
+  <text x="400" y="475" fill="#94A3B8" font-family="'IBM Plex Sans Arabic', sans-serif" font-size="14" text-anchor="middle">تصميم طباعي تجاري احترافي مع ملفات الطباعة المنفذة بالأبعاد والزوائد (Bleed)</text>
+</svg>

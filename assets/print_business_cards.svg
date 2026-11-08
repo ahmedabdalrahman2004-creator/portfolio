@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B131B" />
+      <stop offset="50%" stop-color="#162E44" />
+      <stop offset="100%" stop-color="#0E1E2E" />
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="12" stdDeviation="15" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="500" fill="url(#cardGrad)" />
+
+  <!-- Business Card 1 (Front - Angled) -->
+  <g transform="translate(180, 100) rotate(-6)" filter="url(#shadow)">
+    <rect width="280" height="170" rx="10" fill="#162E44" stroke="#48CAE4" stroke-width="2" />
+    <!-- Gold accent stripe -->
+    <rect x="0" y="0" width="8" height="170" rx="3" fill="#F5A623" />
+    <circle cx="50" cy="50" r="18" fill="rgba(72, 202, 228, 0.2)" stroke="#48CAE4" stroke-width="1.5" />
+    <text x="50" y="55" fill="#48CAE4" font-family="'IBM Plex Sans Arabic', sans-serif" font-size="14" font-weight="bold" text-anchor="middle">A</text>
+    <text x="80" y="52" fill="#FFFFFF" font-family="'IBM Plex Sans Arabic', sans-serif" font-size="16" font-weight="bold">أحمد عبدالرحمن</text>
+    <text x="80" y="68" fill="#F5A623" font-family="'IBM Plex Sans Arabic', sans-serif" font-size="10">Digital &amp; IT Specialist</text>
+
+    <!-- Details -->
+    <text x="30" y="115" fill="#94A3B8" font-family="'IBM Plex Sans Arabic', sans-serif" font-size="11">📱 01061292803</text>
+    <text x="30" y="135" fill="#94A3B8" font-family="'IBM Plex Sans Arabic', sans-serif" font-size="10">✉️ ahmedabdalrahman2004@gmail.com</text>
+  </g>
+
+  <!-- Business Card 2 (Back - Overlapping) -->
+  <g transform="translate(360, 160) rotate(8)" filter="url(#shadow)">
+    <rect width="280" height="170" rx="10" fill="#0B131B" stroke="#F5A623" stroke-width="2" />
+    <circle cx="140" cy="85" r="45" fill="none" stroke="#48CAE4" stroke-width="1.5" stroke-dasharray="4 4" />
+    <text x="140" y="80" fill="#FFFFFF" font-family="'IBM Plex Sans Arabic', sans-serif" font-size="20" font-weight="bold" text-anchor="middle">حلول رقمية</text>
+    <text x="140" y="102" fill="#F5A623" font-family="'IBM Plex Sans Arabic', sans-serif" font-size="12" text-anchor="middle">CREATIVE &amp; IT</text>
+  </g>
+
+  <!-- Title Bottom -->
+  <text x="400" y="445" fill="#FFFFFF" font-family="'IBM Plex Sans Arabic', sans-serif" font-size="22" font-weight="700" text-anchor="middle">كروت عمل شخصية فاخرة (Business Cards)</text>
+  <text x="400" y="475" fill="#94A3B8" font-family="'IBM Plex Sans Arabic', sans-serif" font-size="14" text-anchor="middle">تصميم عصري بطابع تقني مع خامات فاخرة ولمسات ذهبية وسماوية</text>
+</svg>
