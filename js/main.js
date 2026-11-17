@@ -256,10 +256,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // =========================================================================
   const revealElements = document.querySelectorAll('.reveal-on-scroll');
 
-  // Reveal immediately on mobile or if already in view
-  if (window.innerWidth <= 768) {
-    revealElements.forEach(el => el.classList.add('is-revealed'));
-  } else if ('IntersectionObserver' in window) {
+  if ('IntersectionObserver' in window) {
     const revealObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -268,19 +265,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     }, {
-      rootMargin: '100px 0px 100px 0px',
-      threshold: 0
+      rootMargin: '0px 0px -30px 0px',
+      threshold: 0.05
     });
 
-    revealElements.forEach(el => revealObserver.observe(el));
+    revealElements.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        setTimeout(() => el.classList.add('is-revealed'), 80);
+      } else {
+        revealObserver.observe(el);
+      }
+    });
   } else {
     revealElements.forEach(el => el.classList.add('is-revealed'));
   }
-
-  // Failsafe: Ensure everything is revealed after 800ms
-  setTimeout(() => {
-    revealElements.forEach(el => el.classList.add('is-revealed'));
-  }, 800);
 
 
   // =========================================================================
@@ -310,7 +309,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // =========================================================================
-  // 5. Mobile Drawer Menu
+  // 5. Mobile Drawer Menu with Staggered Entrance Animations
   // =========================================================================
   const mobileMenuBtn = document.getElementById('mobile-menu-btn');
   const mobileMenu = document.getElementById('mobile-menu');
@@ -320,16 +319,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function openMobileMenu() {
     if (mobileMenu && mobileMenuOverlay) {
+      mobileMenuOverlay.classList.remove('hidden', 'opacity-0', 'pointer-events-none');
+      mobileMenuOverlay.classList.add('opacity-100', 'pointer-events-auto');
       mobileMenu.classList.remove('translate-x-full');
-      mobileMenuOverlay.classList.remove('hidden');
+      mobileMenu.classList.add('translate-x-0');
       document.body.style.overflow = 'hidden';
+
+      // Stagger animate nav links inside mobile drawer
+      mobileLinks.forEach((link, idx) => {
+        link.style.opacity = '0';
+        link.style.transform = 'translateX(20px)';
+        link.style.transition = `all 0.3s cubic-bezier(0.16, 1, 0.3, 1) ${0.1 + idx * 0.035}s`;
+        setTimeout(() => {
+          link.style.opacity = '1';
+          link.style.transform = 'translateX(0)';
+        }, 50);
+      });
     }
   }
 
   function closeMobileMenu() {
     if (mobileMenu && mobileMenuOverlay) {
       mobileMenu.classList.add('translate-x-full');
-      mobileMenuOverlay.classList.add('hidden');
+      mobileMenu.classList.remove('translate-x-0');
+      mobileMenuOverlay.classList.add('opacity-0', 'pointer-events-none');
+      mobileMenuOverlay.classList.remove('opacity-100', 'pointer-events-auto');
+      setTimeout(() => {
+        mobileMenuOverlay.classList.add('hidden');
+      }, 300);
       document.body.style.overflow = '';
     }
   }
@@ -481,7 +498,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // =========================================================================
-  // 8. FAQ Accordion
+  // 8. FAQ Accordion with Smooth Sliding Transition
   // =========================================================================
   const faqItems = document.querySelectorAll('.faq-item');
 
@@ -490,24 +507,52 @@ document.addEventListener('DOMContentLoaded', () => {
     const content = item.querySelector('.faq-content');
     const icon = item.querySelector('.faq-icon');
 
-    header.addEventListener('click', () => {
-      const isOpen = !content.classList.contains('hidden');
+    if (!header || !content) return;
 
+    // Apply smooth hardware-accelerated transitions
+    content.style.transition = 'max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease';
+    content.style.overflow = 'hidden';
+
+    if (content.classList.contains('hidden')) {
+      content.style.maxHeight = '0px';
+      content.style.opacity = '0';
+    } else {
+      content.style.maxHeight = content.scrollHeight + 'px';
+      content.style.opacity = '1';
+    }
+
+    header.addEventListener('click', () => {
+      const isCurrentlyOpen = !content.classList.contains('hidden') && content.style.maxHeight !== '0px';
+
+      // Close other accordion items smoothly
       faqItems.forEach(other => {
         if (other !== item) {
-          other.querySelector('.faq-content').classList.add('hidden');
-          other.querySelector('.faq-icon').classList.remove('rotate-180', 'text-[#DCCDB8]');
+          const otherContent = other.querySelector('.faq-content');
+          const otherIcon = other.querySelector('.faq-icon');
+          if (otherContent) {
+            otherContent.style.maxHeight = '0px';
+            otherContent.style.opacity = '0';
+            setTimeout(() => otherContent.classList.add('hidden'), 400);
+          }
+          if (otherIcon) otherIcon.classList.remove('rotate-180', 'text-[#DCCDB8]');
           other.classList.remove('border-[#DCCDB8]');
         }
       });
 
-      if (isOpen) {
-        content.classList.add('hidden');
-        icon.classList.remove('rotate-180', 'text-[#DCCDB8]');
+      if (isCurrentlyOpen) {
+        content.style.maxHeight = '0px';
+        content.style.opacity = '0';
+        setTimeout(() => content.classList.add('hidden'), 400);
+        if (icon) icon.classList.remove('rotate-180', 'text-[#DCCDB8]');
         item.classList.remove('border-[#DCCDB8]');
       } else {
         content.classList.remove('hidden');
-        icon.classList.add('rotate-180', 'text-[#DCCDB8]');
+        // Double frame for height recalculation
+        requestAnimationFrame(() => {
+          content.style.maxHeight = content.scrollHeight + 'px';
+          content.style.opacity = '1';
+        });
+        if (icon) icon.classList.add('rotate-180', 'text-[#DCCDB8]');
         item.classList.add('border-[#DCCDB8]');
       }
     });
